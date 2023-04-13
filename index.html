@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linked Lists</title>
+  </head>
+  <body>
+    <script>
+      class MainList {
+        constructor(head = null) {
+          this.head = head;
+        }
+        first(){
+            return this.head;
+        }
+        last(){
+            let p=this.head; //p=pointer
+            while(p.c_nextMovie){
+                p=p.c_nextMovie;
+            }
+            return p;
+        }
+        size(){
+            let c=1; //c=counter
+            let p=this.head; //p=pointer
+            if(this.head===null){
+                return 0;
+            }
+            while(p.c_nextMovie){
+                c++;
+                p=p.c_nextMovie;
+            }
+            return c+" movies entered.";
+        }
+        movieNumber(title){ //find(value)
+            let c=1;
+            let p=this.head;
+            if(this.head===null){
+                return "No movies entered.";
+            }
+            while(p.b_title!==title){
+                c++;
+                // console.log(p.b_title);
+                if(p.c_nextMovie===null){
+                    return "Movie not found";
+                }else{
+                    p=p.c_nextMovie;
+                }
+                
+            }
+            return "Movie #"+c;
+        }
+        containsMovie(title){ //find(value)
+            let p=this.head;
+            if(this.head===null){
+                return "No movies entered.";
+            }
+            while(p.b_title!==title){
+                // console.log(p.b_title);
+                if(p.c_nextMovie===null){
+                    return false+", movie is not on this list.";
+                }else{
+                    p=p.c_nextMovie;
+                }
+                
+            }
+            return true+", movie is on this list.";
+        }
+      }
+      class Movie {
+        constructor(entryNumber, title, nextMovie = null) {
+          this.a_entryNumber = entryNumber,
+          this.b_title = title,
+          this.c_nextMovie = nextMovie;
+        }
+      }
+
+      let one = new Movie(1, "The Phantom Menace");
+      let two = new Movie(2, "The Clone Wars");
+      let three = new Movie(3, "Revenge of the Sith");
+      let four = new Movie(4, "A New Hope");
+      let five = new Movie(5, "The Empire Strikes Back");
+      let six = new Movie(6, "Return of the Jedi");
+
+      one.c_nextMovie=two;
+      two.c_nextMovie=three;
+      three.c_nextMovie=four;
+      four.c_nextMovie=five;
+      five.c_nextMovie=six;
+
+      let starWarsMovies = new MainList(one);
+      console.log(starWarsMovies);
+
+      console.log(starWarsMovies.first());
+      console.log(starWarsMovies.last());
+      console.log(starWarsMovies.size());
+      console.log(starWarsMovies.movieNumber("The Clone Wars"));
+      console.log(starWarsMovies.containsMovie("Solo"));
+    </script>
+  </body>
+</html>
