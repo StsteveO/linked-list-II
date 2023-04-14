@@ -12,6 +12,11 @@
         constructor(head = null) {
           this.head = head;
         }
+        prepend(entryNumber, title){
+          let p= new Movie(entryNumber, title);
+          p.c_nextMovie=this.head;
+          this.head=p;
+        }
         first(){
             return this.head;
         }
@@ -21,6 +26,25 @@
                 p=p.c_nextMovie;
             }
             return p;
+        }
+        append(entryNumber, title){
+          let p=this.head; //p=pointer
+          while(p.c_nextMovie){
+            p=p.c_nextMovie;
+          }
+          p.c_nextMovie= new Movie(entryNumber, title);
+          p=p.c_nextMovie;
+          return p;
+        }
+        pop(){
+          let p=this.head;
+          let prev;
+          while(p.c_nextMovie){
+            prev=p;
+            p=p.c_nextMovie
+          }
+          prev.c_nextMovie=null;
+          return;
         }
         size(){
             let c=1; //c=counter
@@ -33,6 +57,76 @@
                 p=p.c_nextMovie;
             }
             return c+" movies entered.";
+        }
+        removeAt(index){
+          let c=1;
+          let p=this.head;
+          let after;
+          let prev;
+          if(index<1){
+            return "Enter a positive number";
+          }
+          if(index===1){
+            this.head=p.c_nextMovie;
+            return;
+          }
+          while(index>1 && c<index){
+            if(p.c_nextMovie===null){
+              prev.c_nextMovie=null;
+              return;
+            }else{
+              c++;
+              prev=p;
+              p=p.c_nextMovie;
+              after=p.c_nextMovie;
+            }
+          }
+          prev.c_nextMovie=after;
+          return;
+        }
+        outline(){
+          let p=this.head;
+          let after;
+          let outlineArr=[];
+          while(p.b_title){
+            outlineArr.push(`(${p.a_entryNumber}. ${p.b_title})`);
+            if(p.c_nextMovie===null){
+              outlineArr.push("null");
+              return outlineArr.join(" -> ");
+            }else{
+              p=p.c_nextMovie;
+            }
+          }
+        }
+        insert(index,entryNumber,title){
+          let c=1; //c=counter
+          let p=this.head; //p=pointer
+          let prev;
+          let newEntry= new Movie(entryNumber, title);
+          if(index<1){
+            return "Enter a positive number";
+          }
+          if(this.head===null){
+            return "Unable to find.";
+          }
+          if(index===1){
+            newEntry.c_nextMovie=this.head;
+            this.head=newEntry;
+            return;
+          }
+          while(index>1 && c<index){
+            if(p.c_nextMovie===null){
+              p.c_nextMovie=newEntry;
+              return;
+            }else{
+              c++;
+              prev=p;
+              p=p.c_nextMovie;
+            }
+          }
+          prev.c_nextMovie=newEntry;
+          newEntry.c_nextMovie=p;
+          return;
         }
         movieNumber(title){ //find(value)
             let c=1;
@@ -93,11 +187,13 @@
       let starWarsMovies = new MainList(one);
       console.log(starWarsMovies);
 
-      console.log(starWarsMovies.first());
-      console.log(starWarsMovies.last());
-      console.log(starWarsMovies.size());
-      console.log(starWarsMovies.movieNumber("The Clone Wars"));
-      console.log(starWarsMovies.containsMovie("Solo"));
+      console.log(starWarsMovies.insert(4,3.5,"Kenobi: Disney+ Series"));
+      console.log(starWarsMovies.insert(5,3.5,"Rogue One"));
+      console.log(starWarsMovies.append(7, "The Force Awakens"));
+      console.log(starWarsMovies.append(8, "The Last Jedi"));
+      console.log(starWarsMovies.append(9, "The Rise of Skywalker"));
+      console.log(starWarsMovies.insert(9,6.5,"The Mandelorian"));
+      console.log(starWarsMovies.outline());
     </script>
   </body>
 </html>
