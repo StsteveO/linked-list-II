@@ -3,5 +3,6 @@
 ## The Odin Project: Linked Lists (Round 2)
 [**Click here**](https://www.theodinproject.com/lessons/javascript-linked-lists "The Odin Project") for project instructions.
 
-One of the things really helping me understand data structures, is by making the actual data relative to somthing I am interested in. This makes it more appealing becuase instead of working on "data", and "nodes", I'll be working with information I am use to which will help me understand why data structures are important. 
-Instead of using "data", and "nodes" I will actually user terminology to help me order (and maybe even rank) Star Wars movies. 
+One of the things really helping me understand linked lists, is by making the actual data relative to somthing I am interested in. This makes it more appealing becuase instead of working on "data", and "nodes", I'll be working with information I am familiar with, which will help me understand why linked lists (and data structures in general) are important. 
+
+For this project, instead of using *face-less* "data", and "nodes" I will actually user terminology to help me order the Star Wars movies. 
